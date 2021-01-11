@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
+<!--    <data>-->
+<!--        <record model="res.config.settings" id="res_config_settings">-->
+<!--            <field name="group_product_variant" eval="1"/>-->
+<!--        </record>-->
+
+<!--        <function model="res.config.settings" name="execute">-->
+<!--            <value eval="[ref('res_config_settings')]"/>-->
+<!--            <value eval="{}"/>-->
+<!--        </function>-->
+<!--    </data>-->
+
     <data noupdate="1">
         <record id="patient_xyz" model="hospital.patient">
             <field name="patient_name">xyz</field>
@@ -13,7 +25,7 @@
     <data noupdate="1">
         <record id="appointment_xyz" model="hospital.appointment">
             <field name="patient_id" ref="patient_xyz"/>
-            <field name="notes">T O B I</field>
+            <field name="notes">TOBI</field>
         </record>
     </data>
 </odoo>

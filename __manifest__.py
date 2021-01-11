@@ -38,6 +38,7 @@
         'wizards/create_appointment.xml',
         'report/report.xml',
         'report/patient_card.xml',
+        'report/sale_report_inherit.xml',
         'security/security.xml',
     ],
     # only loaded in demonstration mode
