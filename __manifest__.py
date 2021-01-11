@@ -26,10 +26,12 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
+        'views/lab.xml',
         'views/patient.xml',
         'views/appointment.xml',
         'views/doctor.xml',
         'security/ir.model.access.csv',
+        'data/cron.xml',
         'data/sequence.xml',
         'data/data.xml',
         'data/mail_template.xml',

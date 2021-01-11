@@ -22,6 +22,9 @@ class HospitalPatient(models.Model):
     _description = 'Patient Record'
     _rec_name = 'patient_name'
 
+    def test_cron_job(self):
+        print('acv')
+
     def name_get(self):
         res = []
         for rec in self:
@@ -83,7 +86,7 @@ class HospitalPatient(models.Model):
         ('male', 'Male'),
         ('fe_male', 'Female'),
     ], string="Doctor Gender")
-    patient_name_upper = fields.Char(compute='_compute_upper_name', inverse='_inverse_upper_name')
+    patient_name_upper = fields.Char(compute='_compute_upper_name', inverse='_inverse_upper_name', store=True)
     name_seq = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
                            index=True, default=lambda self: _('New'))
     gender = fields.Selection([
@@ -96,9 +99,10 @@ class HospitalPatient(models.Model):
         ('minor', 'Minor')
     ], string="Age Group", compute='set_age_group')
 
+    @api.depends('patient_name')
     def _compute_upper_name(self):
         for rec in self:
-            rec.patient_name_upper = rec.patient_name_upper() if rec.patient_name else False
+            rec.patient_name_upper = rec.patient_name.upper() if rec.patient_name else False
 
     def _inverse_upper_name(self):
         for rec in self:
