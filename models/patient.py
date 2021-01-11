@@ -83,6 +83,7 @@ class HospitalPatient(models.Model):
         ('male', 'Male'),
         ('fe_male', 'Female'),
     ], string="Doctor Gender")
+    patient_name_upper = fields.Char(compute='_compute_upper_name', inverse='_inverse_upper_name')
     name_seq = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
                            index=True, default=lambda self: _('New'))
     gender = fields.Selection([
@@ -94,6 +95,14 @@ class HospitalPatient(models.Model):
         ('major', 'Major'),
         ('minor', 'Minor')
     ], string="Age Group", compute='set_age_group')
+
+    def _compute_upper_name(self):
+        for rec in self:
+            rec.patient_name_upper = rec.patient_name_upper() if rec.patient_name else False
+
+    def _inverse_upper_name(self):
+        for rec in self:
+            rec.patient_name = rec.patient_name_upper.lower() if rec.patient_name_upper else False
 
     @api.model
     def create(self, vals):
