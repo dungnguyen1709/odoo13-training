@@ -30,6 +30,9 @@
         'views/patient.xml',
         'views/appointment.xml',
         'views/doctor.xml',
+        'views/templates.xml',
+        'views/settings.xml',
+        'views/sale_order.xml',
         'security/ir.model.access.csv',
         'data/cron.xml',
         'data/sequence.xml',
@@ -39,10 +42,12 @@
         'report/report.xml',
         'report/patient_card.xml',
         'report/sale_report_inherit.xml',
+        'report/appointment.xml',
         'security/security.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'images': ['static/description/benhvien.png']
 }

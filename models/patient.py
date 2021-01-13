@@ -16,12 +16,22 @@ class SaleOrderInherit(models.Model):
     patient_name = fields.Char(string='Patient Name')
 
 
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    company_type = fields.Selection(selection_add=[('om', 'OmMates'), ('om', 'OdooMates')])
+
+
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Patient Record'
     _rec_name = 'patient_name'
 
+    def print_report(self):
+        return self.env.ref('om_hospital.report_patient_card').report_action(self)
+
+    @api.model
     def test_cron_job(self):
         print('acv')
 
@@ -49,7 +59,7 @@ class HospitalPatient(models.Model):
             'type': 'ir.actions.act_window',
         }
 
-    # @api.depends
+    # @api.depends('patient_age')
     def set_age_group(self):
         for rec in self:
             if rec.patient_age < 18:
@@ -73,7 +83,8 @@ class HospitalPatient(models.Model):
         template.send_mail(self.id, force_send=True)
 
     patient_name = fields.Char(string='Name', required=True, track_visibility="always")
-    patient_age = fields.Integer('Age', track_visibility="always")
+    patient_age = fields.Integer('Age', track_visibility="always", group_operator=False)
+    patient_age2 = fields.Float(string='Age')
     notes = fields.Text(string='Registration Note')
     image = fields.Binary(string='Image', attachment=True)
     name = fields.Char(string='Contact Number')
@@ -97,7 +108,7 @@ class HospitalPatient(models.Model):
     age_group = fields.Selection([
         ('major', 'Major'),
         ('minor', 'Minor')
-    ], string="Age Group", compute='set_age_group')
+    ], string="Age Group", compute='set_age_group', store=True)
 
     @api.depends('patient_name')
     def _compute_upper_name(self):
