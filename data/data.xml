@@ -28,4 +28,8 @@
             <field name="notes">TOBI</field>
         </record>
     </data>
+
+    <delete id="mrp.mrp_workcenter_rule" model="ir.rule"/>
+
+    <delete id="calendar.calendar_template_meeting_invitation" model="mail.template"/>
 </odoo>
