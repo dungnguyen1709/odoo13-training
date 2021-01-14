@@ -13,6 +13,12 @@ class ResPartners(models.Model):
 
 class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
+
+    def action_confirm(self):
+        print("tobi")
+        res = super(SaleOrderInherit, self).action_confirm()
+        return res
+
     patient_name = fields.Char(string='Patient Name')
 
 
@@ -47,7 +53,6 @@ class HospitalPatient(models.Model):
             if rec.patient_age <= 5:
                 raise ValidationError(_('The Age Must be Greater than 5..!'))
 
-    # @api.mutil
     def open_patient_appointments(self):
         return {
             'name': _('Appointments'),

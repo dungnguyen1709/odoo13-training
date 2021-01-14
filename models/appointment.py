@@ -8,6 +8,14 @@ class HospitalAppointment(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "appointment_date desc"
 
+    def test_recordset(self):
+        for rec in self:
+            print("odoo ORM")
+            partners = self.env['res.partner'].search([])
+            print('partners...', partners.mapped('email'))
+            print('sort partners...', partners.sorted(lambda o: o.write_date, reverse=True))
+            print('Filtered partners...', partners.filtered(lambda o: not o.customer))
+
     def delete_lines(self):
         for rec in self:
             print("Time in UTC", rec.appointment_datetime)
@@ -28,7 +36,7 @@ class HospitalAppointment(models.Model):
 
     def action_done(self):
         for rec in self:
-            rec.state = 'done'
+            rec.doctor_id.user_id.notofy_success(message="My success message")
 
     @api.model
     def create(self, vals):
@@ -89,3 +97,4 @@ class HospitalAppointmentLines(models.Model):
     product_id = fields.Many2one('product.product', string='product')
     product_qty = fields.Integer(string='Quantity')
     appointment_id = fields.Many2one('hospital.appointment', string='Appointment ID')
+    sequence = fields.Integer(string='Sequence')

@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'sale'],
+    'depends': ['base', 'mail', 'sale', 'board'],
 
     # always loaded
     'data': [
@@ -33,6 +33,7 @@
         'views/templates.xml',
         'views/settings.xml',
         'views/sale_order.xml',
+        'views/dashboard.xml',
         'security/ir.model.access.csv',
         'data/cron.xml',
         'data/sequence.xml',
