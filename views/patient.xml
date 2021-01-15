@@ -89,7 +89,7 @@
                             <field name="patient_age2" widget="float_toggle" options="{'range': [0,1,3,4,5,6,7,8,9,10,11]}"/>
                             <field name="gender"/>
                             <field name="doctor_id" attrs="{'invisible': [('gender','=', 'male')]}" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
-                            <field name="doctor_gender"/>
+                            <field name="doctor_gender" readonly="1" force_save="1"/>
                             <field name="user_id"/>
                         </group>
                     </group>

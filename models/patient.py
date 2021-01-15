@@ -20,6 +20,7 @@ class SaleOrderInherit(models.Model):
         return res
 
     patient_name = fields.Char(string='Patient Name')
+    is_patient = fields.Boolean(string='Is Patient')
 
 
 class ResPartner(models.Model):
