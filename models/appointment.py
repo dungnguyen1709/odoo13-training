@@ -36,7 +36,7 @@ class HospitalAppointment(models.Model):
 
     def action_done(self):
         for rec in self:
-            rec.doctor_id.user_id.notofy_success(message="My success message")
+            rec.doctor_id.user_id.notify_success(message="My success message")
 
     @api.model
     def create(self, vals):
