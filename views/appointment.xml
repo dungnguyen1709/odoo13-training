@@ -71,6 +71,7 @@
                             <field name="doctor_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
                             <field name="doctor_ids" widget="many2many_tags"/>
                             <field name="patient_age"/>
+                            <field name="amount"/>
                         </group>
                         <group>
                             <field name="appointment_date" options="{'datepicker': {'daysOfWeekDisabled': [0, 6]}}"/>

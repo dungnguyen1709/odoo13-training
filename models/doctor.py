@@ -15,4 +15,5 @@ class HospitalDoctor(models.Model):
     user_id = fields.Many2one('res.users', string='Related User')
     # patient_id = fields.Many2one('hospital.patient', string='Related Patient')
     # related_patient_id = fields.Many2one('hospital.patient', string='Related Patient ID')
-    appointment_ids = fields.Many2many('hospital.doctor','hospital_patient_rel','doctor_id_rec','appointment_id', string='Appointments')
+    appointment_ids = fields.Many2many('hospital.doctor', 'hospital_patient_rel', 'doctor_id_rec', 'appointment_id',
+                                       string='Appointments')
