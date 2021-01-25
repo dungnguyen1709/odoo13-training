@@ -6,7 +6,7 @@ class ResPartners(models.Model):
     _inherit = 'res.partner'
 
     @api.model
-    def crate(self, vals_list):
+    def create(self, vals_list):
         res = super(ResPartners, self).create(vals_list)
         return res
 
